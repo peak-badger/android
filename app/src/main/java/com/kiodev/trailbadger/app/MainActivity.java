@@ -5,9 +5,16 @@ import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Window;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.io.InputStream;
 
 public class MainActivity extends FragmentActivity implements
 		ActionBar.TabListener {
@@ -15,6 +22,8 @@ public class MainActivity extends FragmentActivity implements
 	public static final String TAG = MainActivity.class.getSimpleName();
     public static final String EXTRA_LAT = "com.kiodev.trailbadger.app.lat";
     public static final String EXTRA_LNG = "com.kiodev.trailbadger.app.lng";
+
+    public static JSONObject PEAK_DATA = null;
 
 	/**
 	 * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -79,7 +88,42 @@ public class MainActivity extends FragmentActivity implements
 					.setText(mSectionsPagerAdapter.getPageTitle(i))
 					.setTabListener(this));
 		}
+
+        // Load the JSON Object
+        loadJSONFromAsset();
 	}
+
+    public JSONObject loadJSONFromAsset() {
+        String jsonString = null;
+        JSONObject jsonObject = null;
+        Log.d(TAG, "loadJSONFromAsset()");
+
+        try {
+
+            InputStream is = getAssets().open("_index.geojson");
+
+            int size = is.available();
+
+            byte[] buffer = new byte[size];
+
+            is.read(buffer);
+
+            is.close();
+
+            jsonString = new String(buffer, "UTF-8");
+            try {
+                PEAK_DATA = new JSONObject(jsonString);
+            } catch (JSONException e) {
+                Log.e(TAG, "JSON Error: ", e);
+            }
+
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            return null;
+        }
+
+        return jsonObject;
+    }
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {

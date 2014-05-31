@@ -14,9 +14,16 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+
 public class StartFragment extends Fragment {
 
     public static final String KIO = "KIO";
+    public static final String TAG = StartFragment.class.getSimpleName();
 
     private Button mCheckInButton;
 
@@ -81,15 +88,85 @@ public class StartFragment extends Fragment {
     }
 
     private boolean isOnPeak() {
+
+        Boolean isOnPeak = false;
+
         Double lat = mLocation.getLatitude();
         Double lng = mLocation.getLongitude();
 
-        // Check Lat
 
-        // Check Lng
+        JSONObject jsonObject = MainActivity.PEAK_DATA;
+        JSONArray jsonArray = null;
+        JSONObject mountain = null;
+        JSONObject jsonFeatures = null;
 
-        return true;
+        String name = null;
+        String continent = null;
+
+//        Lat: 39.7334722400
+//        Lng: -104.99265809
+
+        Double minTargetLat = 39.0;
+        Double maxTargetLat = 40.0;
+
+        Double minTargetLng = -105.0;
+        Double maxTargetLng = -104.0;
+
+
+        Double thisLat = 0.0;
+        Double thisLng = 0.0;
+
+        ArrayList<JSONObject> potentialMountains = new ArrayList<JSONObject>();
+
+
+        if( jsonObject != null) {
+            Log.d(TAG, "Yay we got some JSON");
+            name = jsonObject.optString("type");
+            jsonArray = jsonObject.optJSONArray("features");
+
+            for(int i = 0; i < jsonArray.length(); i++) {
+                try {
+                    jsonFeatures = (JSONObject) jsonArray.get(i);
+
+                    if (jsonFeatures != null) {
+                        mountain = jsonFeatures.optJSONObject("properties");
+                        thisLat = mountain.optDouble("latitude");
+                        //Log.d(TAG, String.format("Iteration %d, Lat: %f", i, thisLat));
+                        if ( (thisLat > minTargetLat) && (thisLat < maxTargetLat) ){
+                            Log.d(TAG, "ThisLat: " + thisLat);
+                            Log.d(TAG, "This mountain: " + mountain.optString("name"));
+                            potentialMountains.add(mountain);
+                        }
+                    }
+
+                } catch (JSONException e) {
+                    Log.e(TAG, "JSON Exception ", e);
+                }
+            }
+
+            // Now loop through potential mountains on Lng, if there are any
+            if (potentialMountains.size() > 0){
+                for(int i = 0; i < potentialMountains.size(); i++){
+                    thisLng = potentialMountains.get(i).optDouble("longitude");
+
+                    if ( (thisLng > minTargetLng) && (thisLng < maxTargetLng) ){
+                        Log.d(TAG, "ThisLng: " + thisLng);
+                        Log.d(TAG, "This mountain: " + potentialMountains.get(i).optString("name"));
+                    }
+                }
+            }
+
+            if ( mountain != null ) {
+                // this is our mountain
+                Log.d(TAG, "Our mountain is: " + mountain.optString("name"));
+            }
+        }
+
+        isOnPeak = true;
+
+        return isOnPeak;
     }
+
 
 
     private void addPeak() {
@@ -100,11 +177,6 @@ public class StartFragment extends Fragment {
         i.putExtra(MainActivity.EXTRA_LNG, mLocation.getLongitude());
         getActivity().startActivity(i);
 
-//        Peak thisPeak = new Peak(mLocation.getLatitude(), mLocation.getLongitude());
-//        MyHistory.get(getActivity()).addPeak(thisPeak);
-//        thisPeak.setName(thisPeak.getId().toString());
-//        MyHistory.get(getActivity()).addPeak(thisPeak);
-//        Log.d(KIO, "Added Peak: " + MyHistory.get(getActivity()).getPeak(thisPeak.getId()).toString());
     }
 
     @Override
