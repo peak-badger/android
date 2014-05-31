@@ -1,6 +1,8 @@
 package com.kiodev.trailbadger.app;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.location.Criteria;
 import android.location.Location;
@@ -61,7 +63,29 @@ public class StartFragment extends Fragment {
                     addPeak();
                 }
                 else {
-                    Log.d(KIO, "Sorry you are not on a peak");
+                    Log.d(TAG, "Sorry you are not on a peak");
+                    AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getActivity());
+
+                    // set title
+                    alertDialogBuilder.setTitle(R.string.not_on_peak);
+
+                    // set dialog message
+                    alertDialogBuilder
+                            .setMessage(R.string.not_on_peak_details)
+                            .setCancelable(false)
+                            .setNegativeButton(R.string.ok,new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog,int id) {
+                                    // if this button is clicked, just close
+                                    // the dialog box and do nothing
+                                    dialog.cancel();
+                                }
+                            });
+
+                    // create alert dialog
+                    AlertDialog alertDialog = alertDialogBuilder.create();
+
+                    // show it
+                    alertDialog.show();
                 }
 
                 // button becomes camera button
@@ -78,7 +102,7 @@ public class StartFragment extends Fragment {
 
         if (!enabled) {
             Log.d(KIO, "GPS is not enabled. Sad face :(");
-            Toast.makeText(getActivity(), "Turn on GPS to log a peak", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "You must turn on GPS to log a peak", Toast.LENGTH_SHORT).show();
         }
         else {
             Log.d(KIO, "GPS is enabled. You may proceed");
@@ -89,8 +113,7 @@ public class StartFragment extends Fragment {
             double lat = mLocation.getLatitude();
             double lng = mLocation.getLongitude();
 
-            Toast.makeText(getActivity(), String.format("Lat:%f Lng: %f", lat, lng),
-                    Toast.LENGTH_SHORT).show();
+            Log.d(TAG, String.format("Lat:%f Lng: %f", lat, lng));
         }
     }
 
