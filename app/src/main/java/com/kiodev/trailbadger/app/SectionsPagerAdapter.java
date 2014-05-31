@@ -3,7 +3,8 @@ package com.kiodev.trailbadger.app;
 import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
+import android.util.Log;
 
 import java.util.Locale;
 
@@ -11,7 +12,7 @@ import java.util.Locale;
  * A {@link android.support.v4.app.FragmentPagerAdapter} that returns a fragment corresponding to
  * one of the sections/tabs/pages.
  */
-public class SectionsPagerAdapter extends FragmentPagerAdapter {
+public class SectionsPagerAdapter extends FragmentStatePagerAdapter {
 
     public static final int NUM_SCREENS = 3;
 	protected Context mContext;
@@ -23,13 +24,17 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
 	@Override
 	public Fragment getItem(int position) {
+        Log.d("TAG", "getItem: " + position);
 		// getItem is called to instantiate the fragment for the given page.
 		switch( position ){
 			case 0:
-				return new StartFragment();
+				//Log.d("TAG", "Pos 0");
+                return new StartFragment();
             case 1:
+                //Log.d("TAG", "Pos 1");
                 return new MyPeaksFragment();
 			case 2:
+                //Log.d("TAG", "Pos 2");
 				return new LeaderBoardFragment();
 			default:
 				return null;

@@ -5,7 +5,6 @@ import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Window;
@@ -14,6 +13,8 @@ public class MainActivity extends FragmentActivity implements
 		ActionBar.TabListener {
 	
 	public static final String TAG = MainActivity.class.getSimpleName();
+    public static final String EXTRA_LAT = "com.kiodev.trailbadger.app.lat";
+    public static final String EXTRA_LNG = "com.kiodev.trailbadger.app.lng";
 
 	/**
 	 * The {@link android.support.v4.view.PagerAdapter} that will provide

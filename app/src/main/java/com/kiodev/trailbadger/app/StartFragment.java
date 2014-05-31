@@ -1,6 +1,7 @@
 package com.kiodev.trailbadger.app;
 
 import android.content.Context;
+import android.content.Intent;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationManager;
@@ -92,10 +93,18 @@ public class StartFragment extends Fragment {
 
 
     private void addPeak() {
-        Peak thisPeak = new Peak(mLocation.getLatitude(), mLocation.getLongitude());
-        thisPeak.setName("Fake Peak");
-        MyHistory.get(getActivity()).addPeak(thisPeak);
-        Log.d(KIO, "Added Peak: " + MyHistory.get(getActivity()).getPeak(thisPeak.getId()).toString());
+
+        // Start new Activity to Add Peak
+        Intent i = new Intent(getActivity(), SavePeakActivity.class);
+        i.putExtra(MainActivity.EXTRA_LAT, mLocation.getLatitude());
+        i.putExtra(MainActivity.EXTRA_LNG, mLocation.getLongitude());
+        getActivity().startActivity(i);
+
+//        Peak thisPeak = new Peak(mLocation.getLatitude(), mLocation.getLongitude());
+//        MyHistory.get(getActivity()).addPeak(thisPeak);
+//        thisPeak.setName(thisPeak.getId().toString());
+//        MyHistory.get(getActivity()).addPeak(thisPeak);
+//        Log.d(KIO, "Added Peak: " + MyHistory.get(getActivity()).getPeak(thisPeak.getId()).toString());
     }
 
     @Override
