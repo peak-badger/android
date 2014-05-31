@@ -4,18 +4,29 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity$DummySectionFragment" >
 
+    <!-- Normal View when list items exist -->
+
     <ListView
         android:id="@android:id/list"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true" >
-    </ListView>
-    
-    <TextView
-        android:id="@android:id/empty"
+        android:layout_height="match_parent" />
+
+    <!-- Empty View -->
+
+    <RelativeLayout
+        android:id="@+id/custom_empty_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/add_a_peak" />
+        android:layout_height="match_parent" >
+
+        <TextView
+            android:id="@+id/no_crimes_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:text="@string/no_peaks" />
+
+    </RelativeLayout>
+
 
 </RelativeLayout>
