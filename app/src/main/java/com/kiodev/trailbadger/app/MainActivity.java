@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Window;
+import android.widget.RelativeLayout;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -85,8 +86,9 @@ public class MainActivity extends FragmentActivity implements
 			// the TabListener interface, as the callback (listener) for when
 			// this tab is selected.
 			actionBar.addTab(actionBar.newTab()
-					.setText(mSectionsPagerAdapter.getPageTitle(i))
-					.setTabListener(this));
+                    .setText(mSectionsPagerAdapter.getPageTitle(i))
+                    .setIcon(R.drawable.ic_launcher)
+                    .setTabListener(this));
 		}
 
         // Load the JSON Object
@@ -154,6 +156,10 @@ public class MainActivity extends FragmentActivity implements
 			FragmentTransaction fragmentTransaction) {
 		// When the given tab is selected, switch to the corresponding page in
 		// the ViewPager.
+
+        RelativeLayout tabLayout = (RelativeLayout) tab.getCustomView();
+        tab.setCustomView(tabLayout);
+
 		mViewPager.setCurrentItem(tab.getPosition());
 	}
 
