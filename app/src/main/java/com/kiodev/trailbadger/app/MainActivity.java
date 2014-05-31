@@ -26,35 +26,20 @@ public class MainActivity extends FragmentActivity implements
 
     public static JSONObject PEAK_DATA = null;
 
-	/**
-	 * The {@link android.support.v4.view.PagerAdapter} that will provide
-	 * fragments for each of the sections. We use a
-	 * {@link android.support.v4.app.FragmentPagerAdapter} derivative, which
-	 * will keep every loaded fragment in memory. If this becomes too memory
-	 * intensive, it may be best to switch to a
-	 * {@link android.support.v4.app.FragmentStatePagerAdapter}.
-	 */
 	SectionsPagerAdapter mSectionsPagerAdapter;
-
-	/**
-	 * The {@link android.support.v4.view.ViewPager} that will host the section contents.
-	 */
 	ViewPager mViewPager;
+
+    public static final int[] mTabImages = {
+        R.drawable.mountain,
+        R.drawable.trekking,
+        R.drawable.community
+    };
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
 		setContentView(R.layout.activity_main);
-		
-//		ParseAnalytics.trackAppOpened(getIntent());
-//		ParseUser currentUser = ParseUser.getCurrentUser();
-//		if( currentUser == null ) {
-//			navigateToLogin();
-//		}
-//		else {
-//			Log.i(TAG, "Current User: " + currentUser.getUsername());
-//		}
 		
 		// Set up the action bar.
 		final ActionBar actionBar = getActionBar();
@@ -81,13 +66,12 @@ public class MainActivity extends FragmentActivity implements
 
 		// For each of the sections in the app, add a tab to the action bar.
 		for (int i = 0; i < mSectionsPagerAdapter.getCount(); i++) {
-			// Create a tab with text corresponding to the page title defined by
+			// Create a tab with ing corresponding to the page title defined by
 			// the adapter. Also specify this Activity object, which implements
 			// the TabListener interface, as the callback (listener) for when
 			// this tab is selected.
 			actionBar.addTab(actionBar.newTab()
-                    .setText(mSectionsPagerAdapter.getPageTitle(i))
-                    .setIcon(R.drawable.ic_launcher)
+                    .setIcon(mTabImages[i])
                     .setTabListener(this));
 		}
 
@@ -138,16 +122,7 @@ public class MainActivity extends FragmentActivity implements
 	public boolean onOptionsItemSelected(MenuItem item) {
 		
 		int itemId = item.getItemId();
-		
-//		if( itemId == R.id.action_logout ){
-//			ParseUser.logOut();
-//			navigateToLogin();
-//		}
-//		else if (itemId == R.id.action_edit_friends){
-//			Intent intent = new Intent(this, EditFriendsActivity.class);
-//			startActivity(intent);
-//		}
-//
+
 		return super.onOptionsItemSelected(item);
 	}
 
