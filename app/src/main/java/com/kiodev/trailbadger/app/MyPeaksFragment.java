@@ -26,17 +26,13 @@ public class MyPeaksFragment extends ListFragment {
         // Get singleton and then get list of crimes
         mPeaks = MyHistory.get(getActivity()).getPeaks();
 
-        // Create the Adapter
-        PeakAdapter adapter = new PeakAdapter(mPeaks);
-        setListAdapter(adapter);
+
     }
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 
-        ((PeakAdapter) getListAdapter()).notifyDataSetChanged();
-		
 		View rootView = inflater.inflate(R.layout.fragment_my_peaks,
 				container, false);
 
@@ -45,6 +41,11 @@ public class MyPeaksFragment extends ListFragment {
         ListView displayList = (ListView) rootView.findViewById(android.R.id.list);
         displayList.setEmptyView(empty);
 
+        // Create the Adapter
+        PeakAdapter adapter = new PeakAdapter(mPeaks);
+        adapter.notifyDataSetChanged();
+        setListAdapter(adapter);
+
         return rootView;
 	}
 
@@ -52,7 +53,6 @@ public class MyPeaksFragment extends ListFragment {
     public void onResume() {
         super.onResume();
         Log.d(TAG, "onresume");
-        ((PeakAdapter) getListAdapter()).notifyDataSetChanged();
     }
 
     @Override
@@ -74,6 +74,8 @@ public class MyPeaksFragment extends ListFragment {
         // about what to display
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
+
+            Log.d(TAG, "getView: " + position);
 
             // If we weren't given a view, then inflate one
             if (convertView == null) {

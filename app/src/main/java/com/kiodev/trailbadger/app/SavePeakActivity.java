@@ -26,9 +26,9 @@ public class SavePeakActivity extends ActionBarActivity {
 
 
         Peak thisPeak = new Peak(lat, lng);
-        MyHistory.get(this).addPeak(thisPeak);
         thisPeak.setName(thisPeak.getId().toString());
         MyHistory.get(this).addPeak(thisPeak);
+        
         Log.d(TAG, "Added Peak: " + MyHistory.get(this).getPeak(thisPeak.getId()).toString());
     }
 
