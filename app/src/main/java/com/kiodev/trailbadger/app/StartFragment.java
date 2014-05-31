@@ -18,8 +18,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
-
 public class StartFragment extends Fragment {
 
     public static final String KIO = "KIO";
@@ -30,6 +28,12 @@ public class StartFragment extends Fragment {
     private Location mLocation;
     private LocationManager mLocMan;
     private String mLocProvider;
+
+    private Double mMinTargetLat;
+    private Double mMaxTargetLat;
+
+    private Double mMinTargetLng;
+    private Double mMaxTargetLng;
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -79,6 +83,9 @@ public class StartFragment extends Fragment {
         else {
             Log.d(KIO, "GPS is enabled. You may proceed");
 
+            // Make sure its the most recent location
+            mLocation = mLocMan.getLastKnownLocation(mLocProvider);
+
             double lat = mLocation.getLatitude();
             double lng = mLocation.getLongitude();
 
@@ -94,36 +101,23 @@ public class StartFragment extends Fragment {
         Double lat = mLocation.getLatitude();
         Double lng = mLocation.getLongitude();
 
-
         JSONObject jsonObject = MainActivity.PEAK_DATA;
-        JSONArray jsonArray = null;
+        JSONArray jsonArray;
+        JSONObject jsonFeatures;
         JSONObject mountain = null;
-        JSONObject jsonFeatures = null;
-
-        String name = null;
-        String continent = null;
-
-//        Lat: 39.7334722400
-//        Lng: -104.99265809
-
-        Double minTargetLat = 39.0;
-        Double maxTargetLat = 40.0;
-
-        Double minTargetLng = -105.0;
-        Double maxTargetLng = -104.0;
-
 
         Double thisLat = 0.0;
         Double thisLng = 0.0;
 
-        ArrayList<JSONObject> potentialMountains = new ArrayList<JSONObject>();
-
+        setMyBox(lat, lng);
 
         if( jsonObject != null) {
             Log.d(TAG, "Yay we got some JSON");
-            name = jsonObject.optString("type");
+
+            // Parse to array
             jsonArray = jsonObject.optJSONArray("features");
 
+            // Loop through array
             for(int i = 0; i < jsonArray.length(); i++) {
                 try {
                     jsonFeatures = (JSONObject) jsonArray.get(i);
@@ -131,12 +125,14 @@ public class StartFragment extends Fragment {
                     if (jsonFeatures != null) {
                         mountain = jsonFeatures.optJSONObject("properties");
                         thisLat = mountain.optDouble("latitude");
-                        //Log.d(TAG, String.format("Iteration %d, Lat: %f", i, thisLat));
-                        if ( (thisLat > minTargetLat) && (thisLat < maxTargetLat) ){
-                            Log.d(TAG, "ThisLat: " + thisLat);
-                            Log.d(TAG, "This mountain: " + mountain.optString("name"));
-                            potentialMountains.add(mountain);
+                        thisLng = mountain.optDouble("longitude");
+
+                        if ( isMountainInMyBox(thisLat, thisLng) ){
+                            Log.d(TAG, "Our mountain is: " + mountain.optString("name"));
+                            isOnPeak = true;
+                            break;
                         }
+
                     }
 
                 } catch (JSONException e) {
@@ -144,30 +140,39 @@ public class StartFragment extends Fragment {
                 }
             }
 
-            // Now loop through potential mountains on Lng, if there are any
-            if (potentialMountains.size() > 0){
-                for(int i = 0; i < potentialMountains.size(); i++){
-                    thisLng = potentialMountains.get(i).optDouble("longitude");
-
-                    if ( (thisLng > minTargetLng) && (thisLng < maxTargetLng) ){
-                        Log.d(TAG, "ThisLng: " + thisLng);
-                        Log.d(TAG, "This mountain: " + potentialMountains.get(i).optString("name"));
-                    }
-                }
-            }
-
-            if ( mountain != null ) {
-                // this is our mountain
-                Log.d(TAG, "Our mountain is: " + mountain.optString("name"));
-            }
         }
-
-        isOnPeak = true;
 
         return isOnPeak;
     }
 
+    private void setMyBox(Double lat, Double lng) {
 
+        mMinTargetLat = lat - 0.1;
+        mMaxTargetLat = lat + 0.1;
+
+        mMinTargetLng = lng - 0.1;
+        mMaxTargetLng = lng + 0.1;
+
+    }
+
+
+    private boolean isMountainInMyBox(Double thisLat, Double thisLng){
+        boolean isInMyBox = false;
+
+        Log.d(TAG, "isMountainInMyBox");
+
+        if ( (thisLat > mMinTargetLat) &&
+             (thisLat < mMaxTargetLat) &&
+             (thisLng > mMinTargetLng) &&
+             (thisLng < mMaxTargetLng) )  {
+
+            Log.d(TAG, "ThisLat: " + thisLat);
+            Log.d(TAG, "ThisLng: " + thisLng);
+
+            isInMyBox = true;
+        }
+        return isInMyBox;
+    }
 
     private void addPeak() {
 
