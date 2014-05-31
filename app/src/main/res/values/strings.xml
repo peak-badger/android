@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Trail Badger</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="title_section1">Start</string>
+    <string name="title_section2">My Peaks</string>
+    <string name="title_section3">Friends</string>
+
+    <string name="leaderboard">Leaderboard</string>
+    <string name="check_in">Check In</string>
+    <string name="add_a_peak">Add a peak</string>
+
+</resources>
