@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class MyPeaksActivity extends ListActivity {
@@ -96,6 +97,10 @@ public class MyPeaksActivity extends ListActivity {
 
             TextView titleTextView = (TextView) convertView.findViewById(R.id.peak_name);
             titleTextView.setText(p.getName());
+
+            TextView elevTextView = (TextView) convertView.findViewById(R.id.height);
+            DecimalFormat formatter = new DecimalFormat("#,###");
+            elevTextView.setText( formatter.format(p.getHeightFeet()) );
 
             return convertView;
         }
