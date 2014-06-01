@@ -31,4 +31,5 @@
     <string name="feet_climbed">%s ft Climbed</string>
     <string name="goals_reached">%s Goals Reached</string>
 
+    <string name="title_activity_my_peaks">My Peaks</string>
 </resources>

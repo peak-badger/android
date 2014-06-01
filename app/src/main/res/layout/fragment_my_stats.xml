@@ -5,7 +5,7 @@
     tools:context=".MainActivity$DummySectionFragment" >
 
     <LinearLayout
-        android:id="@+id/LinearLayout_achievements"
+        android:id="@+id/LinearLayout_badges"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
@@ -31,7 +31,7 @@
         android:id="@+id/Divider_achievements"
         android:layout_width="fill_parent"
         android:layout_height="1dp"
-        android:layout_below="@id/LinearLayout_achievements"
+        android:layout_below="@id/LinearLayout_badges"
         android:background="@android:color/darker_gray"/>
 
     <LinearLayout

@@ -40,6 +40,14 @@
                 android:value="com.kiodev.trailbadger.app.MainActivity" />
         </activity>
 
+        <activity
+            android:name="com.kiodev.trailbadger.app.MyPeaksActivity"
+            android:label="@string/title_activity_my_peaks" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.kiodev.trailbadger.app.MainActivity" />
+        </activity>
+
     </application>
 
 </manifest>

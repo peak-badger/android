@@ -1,12 +1,12 @@
 package com.kiodev.trailbadger.app;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -18,6 +18,8 @@ public class MyStatsFragment extends Fragment {
     TextView mBadgesText;
     TextView mFeetText;
     TextView mGoalsText;
+
+    LinearLayout mGoals;
 
     private ArrayList<Peak> mPeaks;
 
@@ -52,6 +54,15 @@ public class MyStatsFragment extends Fragment {
         Integer goals = 0;
         mGoalsText.setText(String.format(goalsString, goals.toString()));
 
+        mGoals = (LinearLayout) v.findViewById(R.id.LinearLayout_badges);
+        mGoals.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getActivity(), MyPeaksActivity.class);
+                startActivity(i);
+            }
+        });
+
         return v;
 	}
 
@@ -63,52 +74,6 @@ public class MyStatsFragment extends Fragment {
         }
 
         return totalFeet;
-    }
-
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        Log.d(TAG, "onresume");
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        Log.d(TAG, "onPause");
-        MyHistory.get(getActivity()).savePeaks();
-    }
-
-    private class PeakAdapter extends ArrayAdapter<Peak> {
-
-        public PeakAdapter(ArrayList<Peak> peaks) {
-            super(getActivity(), 0, peaks);
-        }
-
-        // Overriding this method is what allows us to use the custom list. This
-        // is what gets called
-        // behind the scenes when ListView and adapter have their conversations
-        // about what to display
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-
-            Log.d(TAG, "getView: " + position);
-
-            // If we weren't given a view, then inflate one
-            if (convertView == null) {
-                convertView = getActivity().getLayoutInflater().inflate(
-                        R.layout.list_item_peak, null);
-            }
-
-            // Configure the view for this specific peak
-            Peak p = getItem(position);
-
-            TextView titleTextView = (TextView) convertView.findViewById(R.id.peak_name);
-            titleTextView.setText(p.getName());
-
-            return convertView;
-        }
-
     }
 
 }

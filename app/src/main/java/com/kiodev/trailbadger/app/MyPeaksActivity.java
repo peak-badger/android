@@ -1,9 +1,8 @@
 package com.kiodev.trailbadger.app;
 
+import android.app.ListActivity;
 import android.os.Bundle;
-import android.support.v4.app.ListFragment;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -12,7 +11,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class MyPeaksActivity extends ListFragment {
+public class MyPeaksActivity extends ListActivity {
 
 	public static final String TAG = MyPeaksActivity.class.getSimpleName();
 
@@ -21,32 +20,21 @@ public class MyPeaksActivity extends ListFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setHasOptionsMenu(true);
 
         // Get singleton and then get list of crimes
-        mPeaks = MyHistory.get(getActivity()).getPeaks();
+        mPeaks = MyHistory.get(this).getPeaks();
 
-
-    }
-
-	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState) {
-
-		View rootView = inflater.inflate(R.layout.fragment_my_peaks,
-				container, false);
+		setContentView(R.layout.fragment_my_peaks);
 
         // Set custom empty view
-        View empty = rootView.findViewById(R.id.custom_empty_view);
-        ListView displayList = (ListView) rootView.findViewById(android.R.id.list);
+        View empty = findViewById(R.id.custom_empty_view);
+        ListView displayList = (ListView) findViewById(android.R.id.list);
         displayList.setEmptyView(empty);
 
         // Create the Adapter
         PeakAdapter adapter = new PeakAdapter(mPeaks);
         adapter.notifyDataSetChanged();
         setListAdapter(adapter);
-
-        return rootView;
 	}
 
     @Override
@@ -59,13 +47,13 @@ public class MyPeaksActivity extends ListFragment {
     public void onPause() {
         super.onPause();
         Log.d(TAG, "onPause");
-        MyHistory.get(getActivity()).savePeaks();
+        MyHistory.get(this).savePeaks();
     }
 
     private class PeakAdapter extends ArrayAdapter<Peak> {
 
         public PeakAdapter(ArrayList<Peak> peaks) {
-            super(getActivity(), 0, peaks);
+            super(MyPeaksActivity.this, 0, peaks);
         }
 
         // Overriding this method is what allows us to use the custom list. This
@@ -79,7 +67,7 @@ public class MyPeaksActivity extends ListFragment {
 
             // If we weren't given a view, then inflate one
             if (convertView == null) {
-                convertView = getActivity().getLayoutInflater().inflate(
+                convertView = MyPeaksActivity.this.getLayoutInflater().inflate(
                         R.layout.list_item_peak, null);
             }
 
