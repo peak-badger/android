@@ -13,7 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import org.json.JSONArray;
@@ -25,7 +25,7 @@ public class StartFragment extends Fragment {
     public static final String KIO = "KIO";
     public static final String TAG = StartFragment.class.getSimpleName();
 
-    private Button mCheckInButton;
+    private ImageButton mCheckInButton;
 
     private Location mLocation;
     private LocationManager mLocMan;
@@ -53,7 +53,7 @@ public class StartFragment extends Fragment {
         mLocation = mLocMan.getLastKnownLocation(mLocProvider);
 
         // Setup Checkin button
-        mCheckInButton = (Button) rootView.findViewById(R.id.Button_CheckIn);
+        mCheckInButton = (ImageButton) rootView.findViewById(R.id.Button_CheckIn);
         mCheckInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

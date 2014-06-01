@@ -4,12 +4,12 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity$DummySectionFragment" >
     
-    <Button
+    <ImageButton
         android:id="@+id/Button_CheckIn"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:layout_alignParentBottom="true"
-        android:text="@string/check_in"/>
+        android:src="@drawable/btn_check_in"/>
 
 </RelativeLayout>

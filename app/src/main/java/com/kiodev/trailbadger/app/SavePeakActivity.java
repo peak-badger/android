@@ -7,7 +7,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,7 +27,7 @@ public class SavePeakActivity extends ActionBarActivity {
     private TextView mPeakHeightFt;
     private TextView mPeakHeightM;
 
-    private Button mSaveButton;
+    private ImageButton mSaveButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,7 +68,7 @@ public class SavePeakActivity extends ActionBarActivity {
             mPeakHeightM = (TextView) findViewById(R.id.TextView_peakHeightM);
             mPeakHeightM.setText(mThisPeak.getHeightMeter().toString());
 
-            mSaveButton = (Button) findViewById(R.id.Button_save);
+            mSaveButton = (ImageButton) findViewById(R.id.Button_save);
             mSaveButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

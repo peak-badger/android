@@ -102,12 +102,11 @@
     </LinearLayout>
 
 
-    <Button
+    <ImageButton
         android:id="@+id/Button_save"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/LinearLayout_text"
-        android:text="@string/save"
-        />
+        android:src="@drawable/btn_save"/>
 
 </RelativeLayout>
