@@ -32,7 +32,7 @@ public class SectionsPagerAdapter extends FragmentStatePagerAdapter {
                 return new StartFragment();
             case 1:
                 //Log.d("TAG", "Pos 1");
-                return new MyPeaksFragment();
+                return new MyStatsFragment();
 			case 2:
                 //Log.d("TAG", "Pos 2");
 				return new LeaderBoardFragment();

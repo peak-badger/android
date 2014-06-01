@@ -23,7 +23,12 @@
     <string name="save">Save</string>
     <string name="peak_saved">Your peak has been saved</string>
     <string name="action_my_account">My Account</string>
+
     <string name="title_activity_facebook_login">FacebookLoginActivity</string>
-    <string name="hello_world">Hello world!</string>
+    <string name="facebook_coming_soon">Facebook\n Coming Soon!</string>
+
+    <string name="badges">%s Badges</string>
+    <string name="feet_climbed">%s ft Climbed</string>
+    <string name="goals_reached">%s Goals Reached</string>
 
 </resources>

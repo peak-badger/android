@@ -1,0 +1,98 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity$DummySectionFragment" >
+
+    <LinearLayout
+        android:id="@+id/LinearLayout_achievements"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:layout_marginBottom="25dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:src="@drawable/ic_launcher" />
+
+        <TextView
+            android:id="@+id/TextView_badges"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="8"
+            android:text="@string/badges"/>
+
+        </LinearLayout>
+
+    <View
+        android:id="@+id/Divider_achievements"
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/LinearLayout_achievements"
+        android:background="@android:color/darker_gray"/>
+
+    <LinearLayout
+        android:id="@+id/LinearLayout_feet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:layout_marginBottom="25dp"
+        android:layout_below="@id/Divider_achievements"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:src="@drawable/ic_launcher" />
+
+        <TextView
+            android:id="@+id/TextView_feet"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="8"
+            android:text="@string/feet_climbed"/>
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/Divider_feet"
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/LinearLayout_feet"
+        android:background="@android:color/darker_gray"/>
+
+    <LinearLayout
+        android:id="@+id/LinearLayout_goals"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:layout_marginBottom="25dp"
+        android:layout_below="@id/Divider_feet"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:src="@drawable/ic_launcher" />
+
+        <TextView
+            android:id="@+id/TextView_goals"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="8"
+            android:text="@string/goals_reached"/>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/LinearLayout_goals"
+        android:background="@android:color/darker_gray"/>
+
+</RelativeLayout>

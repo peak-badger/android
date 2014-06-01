@@ -12,9 +12,9 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class MyPeaksFragment extends ListFragment {
+public class MyPeaksActivity extends ListFragment {
 
-	public static final String TAG = MyPeaksFragment.class.getSimpleName();
+	public static final String TAG = MyPeaksActivity.class.getSimpleName();
 
     private ArrayList<Peak> mPeaks;
 

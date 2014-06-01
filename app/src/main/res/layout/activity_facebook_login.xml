@@ -9,8 +9,14 @@
     tools:context="com.kiodev.trailbadger.app.FacebookLoginActivity">
 
     <TextView
-        android:text="@string/hello_world"
+        android:id="@+id/TextView_comingSoon"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_centerHorizontal="true"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:textColor="@color/brown"
+        android:text="@string/facebook_coming_soon"/>
 
 </RelativeLayout>
