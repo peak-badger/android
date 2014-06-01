@@ -34,7 +34,8 @@
 
         <activity
             android:name="com.kiodev.trailbadger.app.FacebookLoginActivity"
-            android:label="@string/title_activity_facebook_login" >
+            android:label="@string/title_activity_facebook_login"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.kiodev.trailbadger.app.MainActivity" />
@@ -42,7 +43,8 @@
 
         <activity
             android:name="com.kiodev.trailbadger.app.MyPeaksActivity"
-            android:label="@string/title_activity_my_peaks" >
+            android:label="@string/title_activity_my_peaks"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.kiodev.trailbadger.app.MainActivity" />

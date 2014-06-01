@@ -70,6 +70,8 @@ public class Peak {
         json.put(JSON_NAME, mName);
         json.put(JSON_LAT, mLat);
         json.put(JSON_LNG, mLng);
+        json.put(JSON_HEIGHT_FEET, mHeightFeet);
+        json.put(JSON_HEIGHT_METER, mHeightMeter);
 
         return json;
     }

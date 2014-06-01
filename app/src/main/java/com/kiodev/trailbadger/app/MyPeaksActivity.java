@@ -2,7 +2,9 @@ package com.kiodev.trailbadger.app;
 
 import android.app.ListActivity;
 import android.os.Bundle;
+import android.support.v4.app.NavUtils;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -20,11 +22,12 @@ public class MyPeaksActivity extends ListActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getActionBar().setDisplayHomeAsUpEnabled(true);
 
         // Get singleton and then get list of crimes
         mPeaks = MyHistory.get(this).getPeaks();
 
-		setContentView(R.layout.fragment_my_peaks);
+		setContentView(R.layout.activity_my_peaks);
 
         // Set custom empty view
         View empty = findViewById(R.id.custom_empty_view);
@@ -48,6 +51,23 @@ public class MyPeaksActivity extends ListActivity {
         super.onPause();
         Log.d(TAG, "onPause");
         MyHistory.get(this).savePeaks();
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+        switch(id) {
+            case R.id.action_settings:
+                return true;
+            case android.R.id.home:
+                NavUtils.navigateUpFromSameTask(this);
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private class PeakAdapter extends ArrayAdapter<Peak> {

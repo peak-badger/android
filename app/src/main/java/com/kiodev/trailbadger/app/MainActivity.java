@@ -32,7 +32,7 @@ public class MainActivity extends FragmentActivity implements
 
     public static final int[] mTabImages = {
         R.drawable.mountain,
-        R.drawable.trekking,
+        R.drawable.feet_climbed,
         R.drawable.community
     };
 

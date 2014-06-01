@@ -15,14 +15,17 @@
         <ImageView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="3"
-            android:src="@drawable/ic_launcher" />
+            android:layout_weight="4"
+            android:src="@drawable/badge_star" />
 
         <TextView
             android:id="@+id/TextView_badges"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="8"
+            android:layout_gravity="center"
+            android:textSize="25sp"
+            android:textStyle="bold"
             android:text="@string/badges"/>
 
         </LinearLayout>
@@ -46,14 +49,17 @@
         <ImageView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="3"
-            android:src="@drawable/ic_launcher" />
+            android:layout_weight="4"
+            android:src="@drawable/feet_climbed" />
 
         <TextView
             android:id="@+id/TextView_feet"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="8"
+            android:layout_gravity="center"
+            android:textSize="25sp"
+            android:textStyle="bold"
             android:text="@string/feet_climbed"/>
 
     </LinearLayout>
@@ -77,14 +83,17 @@
         <ImageView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="3"
-            android:src="@drawable/ic_launcher" />
+            android:layout_weight="4"
+            android:src="@drawable/goals_trophy" />
 
         <TextView
             android:id="@+id/TextView_goals"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="8"
+            android:layout_gravity="center"
+            android:textSize="25sp"
+            android:textStyle="bold"
             android:text="@string/goals_reached"/>
 
     </LinearLayout>

@@ -14,6 +14,8 @@ import android.widget.Toast;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DecimalFormat;
+
 
 public class SavePeakActivity extends ActionBarActivity {
 
@@ -63,10 +65,8 @@ public class SavePeakActivity extends ActionBarActivity {
             mPeakLng.setText(mThisPeak.getLng().toString());
 
             mPeakHeightFt = (TextView) findViewById(R.id.TextView_peakHeightFt);
-            mPeakHeightFt.setText(mThisPeak.getHeightFeet().toString());
-
-            mPeakHeightM = (TextView) findViewById(R.id.TextView_peakHeightM);
-            mPeakHeightM.setText(mThisPeak.getHeightMeter().toString());
+            DecimalFormat formatter = new DecimalFormat("#,###");
+            mPeakHeightFt.setText(formatter.format(mThisPeak.getHeightFeet()));
 
             mSaveButton = (ImageButton) findViewById(R.id.Button_save);
             mSaveButton.setOnClickListener(new View.OnClickListener() {
