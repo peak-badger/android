@@ -34,5 +34,5 @@
     <string name="challenges">Challenges</string>
     <string name="title_activity_my_badges">My Badges</string>
     <string name="title_activity_leader_board">Leaderboard</string>
-
+    <string name="no_users">No Users Yet...</string>
 </resources>
