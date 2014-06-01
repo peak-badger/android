@@ -21,8 +21,8 @@ public class MainActivity extends FragmentActivity implements
 		ActionBar.TabListener {
 	
 	public static final String TAG = MainActivity.class.getSimpleName();
-    public static final String EXTRA_LAT = "com.kiodev.trailbadger.app.lat";
-    public static final String EXTRA_LNG = "com.kiodev.trailbadger.app.lng";
+
+    public static final String EXTRA_PEAK = "com.kiodev.trailbadger.app.peak";
 
     public static JSONObject PEAK_DATA = null;
 
@@ -76,32 +76,36 @@ public class MainActivity extends FragmentActivity implements
 	}
 
     public JSONObject loadJSONFromAsset() {
-        String jsonString = null;
-        JSONObject jsonObject = null;
-        Log.d(TAG, "loadJSONFromAsset()");
+        JSONObject jsonObject = PEAK_DATA;
 
-        try {
+        // Only load JSON once
+        if (jsonObject == null) {
+            String jsonString = null;
+            Log.d(TAG, "loadJSONFromAsset()");
 
-            InputStream is = getAssets().open("_index.geojson");
-
-            int size = is.available();
-
-            byte[] buffer = new byte[size];
-
-            is.read(buffer);
-
-            is.close();
-
-            jsonString = new String(buffer, "UTF-8");
             try {
-                PEAK_DATA = new JSONObject(jsonString);
-            } catch (JSONException e) {
-                Log.e(TAG, "JSON Error: ", e);
-            }
 
-        } catch (IOException ex) {
-            ex.printStackTrace();
-            return null;
+                InputStream is = getAssets().open("_index.geojson");
+
+                int size = is.available();
+
+                byte[] buffer = new byte[size];
+
+                is.read(buffer);
+
+                is.close();
+
+                jsonString = new String(buffer, "UTF-8");
+                try {
+                    PEAK_DATA = new JSONObject(jsonString);
+                } catch (JSONException e) {
+                    Log.e(TAG, "JSON Error: ", e);
+                }
+
+            } catch (IOException ex) {
+                ex.printStackTrace();
+                return null;
+            }
         }
 
         return jsonObject;

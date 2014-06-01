@@ -36,7 +36,9 @@ public class StartFragment extends Fragment {
 
     private Double mMinTargetLng;
     private Double mMaxTargetLng;
-	
+
+    private JSONObject mRealPeak;
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -73,8 +75,8 @@ public class StartFragment extends Fragment {
                     alertDialogBuilder
                             .setMessage(R.string.not_on_peak_details)
                             .setCancelable(false)
-                            .setNegativeButton(R.string.ok,new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog,int id) {
+                            .setNegativeButton(R.string.ok, new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
                                     // if this button is clicked, just close
                                     // the dialog box and do nothing
                                     dialog.cancel();
@@ -124,6 +126,27 @@ public class StartFragment extends Fragment {
         Double lat = mLocation.getLatitude();
         Double lng = mLocation.getLongitude();
 
+//        Dummy Peaks to populate List for Testing
+//        Longs Peak
+        lat = 40.2547;
+        lng = -105.615;
+//
+//        Maroon Bells
+//          lat = 39.0708;
+//          lng = -106.989;
+//
+//         Pikes Peak
+//         lat = 38.8406;
+//          lng = -105.044;
+//
+//          Crested Butte
+//          lat = 38.8833;
+//          lng = -106.943;
+//
+//          Pyramid Peak
+//          lat = 39.0714;
+//          lng = -106.95;
+
         JSONObject jsonObject = MainActivity.PEAK_DATA;
         JSONArray jsonArray;
         JSONObject jsonFeatures;
@@ -152,6 +175,7 @@ public class StartFragment extends Fragment {
 
                         if ( isMountainInMyBox(thisLat, thisLng) ){
                             Log.d(TAG, "Our mountain is: " + mountain.optString("name"));
+                            mRealPeak = mountain;
                             isOnPeak = true;
                             break;
                         }
@@ -182,7 +206,7 @@ public class StartFragment extends Fragment {
     private boolean isMountainInMyBox(Double thisLat, Double thisLng){
         boolean isInMyBox = false;
 
-        Log.d(TAG, "isMountainInMyBox");
+        //Log.d(TAG, "isMountainInMyBox");
 
         if ( (thisLat > mMinTargetLat) &&
              (thisLat < mMaxTargetLat) &&
@@ -201,8 +225,8 @@ public class StartFragment extends Fragment {
 
         // Start new Activity to Add Peak
         Intent i = new Intent(getActivity(), SavePeakActivity.class);
-        i.putExtra(MainActivity.EXTRA_LAT, mLocation.getLatitude());
-        i.putExtra(MainActivity.EXTRA_LNG, mLocation.getLongitude());
+        i.putExtra(MainActivity.EXTRA_PEAK, mRealPeak.toString());
+
         getActivity().startActivity(i);
 
     }

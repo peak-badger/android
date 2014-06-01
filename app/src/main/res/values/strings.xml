@@ -19,4 +19,12 @@
     <string name="not_on_peak_details">Sorry, you are not actually on a peak. Check your map
         and try again.  Happy Hiking!</string>
 
+    <string name="peak">Peak: </string>
+    <string name="height">Height: </string>
+    <string name="lat">Lat: </string>
+    <string name="lng">Lng: </string>
+    <string name="save">Save</string>
+
+    <string name="peak_saved">Your peak has been saved</string>
+
 </resources>

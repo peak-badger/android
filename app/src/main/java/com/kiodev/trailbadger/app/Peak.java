@@ -3,6 +3,7 @@ package com.kiodev.trailbadger.app;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.UUID;
 
 public class Peak {
@@ -12,18 +13,22 @@ public class Peak {
     private static final String JSON_LNG = "solved";
     private static final String JSON_NAME = "date";
 
+    public static final String JSON_HEIGHT_FEET = "height_feet";
+    public static final String JSON_HEIGHT_METER = "height_feet";
+
+
     private UUID mId;
 
     private Double mLat;
     private Double mLng;
     private String mName;
-//
-//    private Double mHeightFeet;
-//    private Double mHeightMeter;
-//
-//    private String mRegion;
-//    private String mCountry;
-//    private String mContinent;
+
+    private Double mHeightFeet;
+    private Double mHeightMeter;
+
+    private ArrayList<String> mRegions;
+    private ArrayList<String> mCountries;
+    private String mContinent;
 
     public Peak(Double lat, Double lng) {
         // Generate a unique identifier
@@ -45,6 +50,14 @@ public class Peak {
 
         if (json.has(JSON_LNG)) {
             mLng = json.getDouble(JSON_LNG);
+        }
+
+        if (json.has(JSON_HEIGHT_FEET)){
+            mHeightFeet = json.getDouble(JSON_HEIGHT_FEET);
+        }
+
+        if (json.has(JSON_HEIGHT_METER)){
+            mHeightMeter = json.getDouble(JSON_HEIGHT_METER);
         }
 
     }
@@ -72,4 +85,33 @@ public class Peak {
     public void setName(String peakName){
         mName = peakName;
     }
+
+    public Double getLat() { return mLat; }
+
+    public void setLat(Double lat) { mLat = lat; }
+
+    public Double getLng() { return mLng; }
+
+    public void setLng(Double lng) { mLng = lng; }
+
+    public Double getHeightFeet() { return mHeightFeet; }
+
+    public void setHeightFeet(Double heightFeet) { mHeightFeet = heightFeet; }
+
+    public Double getHeightMeter() { return mHeightMeter; }
+
+    public void setHeightMeter(Double heightMeter) { mHeightMeter = heightMeter; }
+
+    public ArrayList<String> getRegions() { return mRegions; }
+
+    public void setRegion(String region) { mRegions.add(region); }
+
+    public ArrayList<String> getCountries() { return mCountries; }
+
+    public void setCountry(String country) { mCountries.add(country); }
+
+    public String getContinent() { return mContinent; }
+
+    public void setContinent(String continent) { mContinent = continent; }
+
 }

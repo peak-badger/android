@@ -6,11 +6,28 @@ import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 
 public class SavePeakActivity extends ActionBarActivity {
 
     public static final String TAG = SavePeakActivity.class.getSimpleName();
+
+    Peak mThisPeak;
+
+    private TextView mPeakTitle;
+    private TextView mPeakLat;
+    private TextView mPeakLng;
+    private TextView mPeakHeightFt;
+    private TextView mPeakHeightM;
+
+    private Button mSaveButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,18 +35,55 @@ public class SavePeakActivity extends ActionBarActivity {
         setContentView(R.layout.activity_save_peak);
 
         Intent i = getIntent();
-        Double lat = i.getDoubleExtra(MainActivity.EXTRA_LAT, 0);
-        Double lng = i.getDoubleExtra(MainActivity.EXTRA_LNG, 0);
+        String peak = i.getStringExtra(MainActivity.EXTRA_PEAK);
 
-        Log.d(TAG, "Lat: " + lat);
-        Log.d(TAG, "Lng: " + lng);
+        Log.d(TAG, "peak is: " + peak);
 
+        try {
+            JSONObject mtnJsonObj = new JSONObject(peak);
 
-        Peak thisPeak = new Peak(lat, lng);
-        thisPeak.setName(thisPeak.getId().toString());
-        MyHistory.get(this).addPeak(thisPeak);
+            // Initialize Peak
+            Double lat = mtnJsonObj.optDouble("latitude");
+            Double lng = mtnJsonObj.optDouble("longitude");
+            mThisPeak = new Peak(lat, lng);
 
-        Log.d(TAG, "Added Peak: " + MyHistory.get(this).getPeak(thisPeak.getId()).toString());
+            // Set Peak params
+            mThisPeak.setName(mtnJsonObj.optString("name"));
+            mThisPeak.setHeightFeet(mtnJsonObj.optDouble("feet"));
+            mThisPeak.setHeightMeter(mtnJsonObj.optDouble("meters"));
+
+            // Load data to view
+            mPeakTitle = (TextView) findViewById(R.id.TextView_peakTitle);
+            mPeakTitle.setText(mThisPeak.getName());
+
+            mPeakLat = (TextView) findViewById(R.id.TextView_peakLat);
+            mPeakLat.setText(mThisPeak.getLat().toString());
+
+            mPeakLng = (TextView) findViewById(R.id.TextView_peakLng);
+            mPeakLng.setText(mThisPeak.getLng().toString());
+
+            mPeakHeightFt = (TextView) findViewById(R.id.TextView_peakHeightFt);
+            mPeakHeightFt.setText(mThisPeak.getHeightFeet().toString());
+
+            mPeakHeightM = (TextView) findViewById(R.id.TextView_peakHeightM);
+            mPeakHeightM.setText(mThisPeak.getHeightMeter().toString());
+
+            mSaveButton = (Button) findViewById(R.id.Button_save);
+            mSaveButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    // Add Peak to model
+                    MyHistory.get(SavePeakActivity.this).addPeak(mThisPeak);
+                    Log.d(TAG, "Added Peak: " + MyHistory.get(SavePeakActivity.this).getPeak(mThisPeak.getId()).toString());
+                    Toast.makeText(SavePeakActivity.this, R.string.peak_saved, Toast.LENGTH_SHORT).show();
+                }
+            });
+
+        } catch (JSONException e) {
+            Log.e(TAG, "JSON error: ", e);
+            Toast.makeText(this, "Sorry, something went wrong. Try again", Toast.LENGTH_SHORT).show();
+        }
+
     }
 
 

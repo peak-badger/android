@@ -25,7 +25,9 @@
 
         <activity
             android:name="com.kiodev.trailbadger.app.SavePeakActivity"
-            android:label="@string/title_activity_save_peak" >
+            android:label="@string/title_activity_save_peak"
+            android:theme="@style/AppTheme"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.kiodev.trailbadger.app.MainActivity" />

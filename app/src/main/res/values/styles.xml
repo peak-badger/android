@@ -7,7 +7,7 @@
 
     <style name="PeakBadgerActionBar"
         parent="@android:style/Widget.Holo.Light.ActionBar.Solid.Inverse">
-        <item name="android:background">@color/teal</item>
+        <item name="android:background">@color/brown</item>
         <item name="android:backgroundStacked">@color/teal</item>
 
     </style>
