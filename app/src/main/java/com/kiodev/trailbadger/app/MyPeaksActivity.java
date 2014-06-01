@@ -23,7 +23,7 @@ public class MyPeaksActivity extends ListActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getActionBar().setDisplayHomeAsUpEnabled(true);
+        //getActionBar().setDisplayHomeAsUpEnabled(true);
 
         // Get singleton and then get list of crimes
         mPeaks = MyHistory.get(this).getPeaks();
