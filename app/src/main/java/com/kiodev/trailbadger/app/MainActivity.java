@@ -2,6 +2,7 @@ package com.kiodev.trailbadger.app;
 
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
@@ -122,6 +123,13 @@ public class MainActivity extends FragmentActivity implements
 	public boolean onOptionsItemSelected(MenuItem item) {
 		
 		int itemId = item.getItemId();
+
+        switch(itemId) {
+            case R.id.action_my_account:
+                Intent i = new Intent(MainActivity.this, FacebookLoginActivity.class);
+                startActivity(i);
+                break;
+        }
 
 		return super.onOptionsItemSelected(item);
 	}

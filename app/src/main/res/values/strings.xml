@@ -3,28 +3,27 @@
 
     <string name="app_name">Peak Badger</string>
     <string name="action_settings">Settings</string>
-
     <string name="title_section1">Start</string>
     <string name="title_section2">My Peaks</string>
     <string name="title_section3">Friends</string>
-
     <string name="leaderboard">Leaderboard</string>
+    <string name="leaderboard_coming_soon">Leaderboards\n Coming Soon!</string>
     <string name="check_in">Check In</string>
     <string name="add_a_peak">Add a peak</string>
     <string name="no_peaks">No peaks yet!</string>
     <string name="title_activity_save_peak">SavePeakActivity</string>
-
     <string name="ok">OK</string>
     <string name="not_on_peak">You Aren\'t on a Peak!</string>
     <string name="not_on_peak_details">Sorry, you are not actually on a peak. Check your map
         and try again.  Happy Hiking!</string>
-
     <string name="peak">Peak: </string>
     <string name="height">Height: </string>
     <string name="lat">Lat: </string>
     <string name="lng">Lng: </string>
     <string name="save">Save</string>
-
     <string name="peak_saved">Your peak has been saved</string>
+    <string name="action_my_account">My Account</string>
+    <string name="title_activity_facebook_login">FacebookLoginActivity</string>
+    <string name="hello_world">Hello world!</string>
 
 </resources>
