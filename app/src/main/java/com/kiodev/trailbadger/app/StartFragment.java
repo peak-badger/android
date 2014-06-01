@@ -169,7 +169,7 @@ public class StartFragment extends Fragment {
                 lng = mLocation.getLongitude();
         }
 
-        JSONObject jsonObject = MainActivity.PEAK_DATA;
+        JSONObject jsonObject = SplashActivity.PEAK_DATA;
         JSONArray jsonArray;
         JSONObject jsonFeatures;
         JSONObject mountain = null;
