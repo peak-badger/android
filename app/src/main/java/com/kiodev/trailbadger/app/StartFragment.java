@@ -20,6 +20,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Random;
+
 public class StartFragment extends Fragment {
 
     public static final String KIO = "KIO";
@@ -123,29 +125,49 @@ public class StartFragment extends Fragment {
 
         Boolean isOnPeak = false;
 
-        Double lat = mLocation.getLatitude();
-        Double lng = mLocation.getLongitude();
+        Double lat;
+        Double lng;
 
-//        Dummy Peaks to populate List for Testing
-//        Longs Peak
-        lat = 40.2547;
-        lng = -105.615;
-//
-//        Maroon Bells
-//          lat = 39.0708;
-//          lng = -106.989;
-//
-//         Pikes Peak
-//         lat = 38.8406;
-//          lng = -105.044;
-//
-//          Crested Butte
-//          lat = 38.8833;
-//          lng = -106.943;
-//
-//          Pyramid Peak
-//          lat = 39.0714;
-//          lng = -106.95;
+        // TODO - KIO Test only - Get random points
+        Random randomGenerator = new Random();
+        int randomInt = randomGenerator.nextInt(6);
+
+        switch(randomInt) {
+            case 0:
+                Log.d(TAG, "Using current location");
+                lat = mLocation.getLatitude();
+                lng = mLocation.getLongitude();
+                break;
+            case 1:
+                Log.d(TAG, "Using Longs Peak");
+                lat = 40.2547;
+                lng = -105.615;
+                break;
+            case 2:
+                Log.d(TAG, "Using Maroon Bells");
+                lat = 39.0708;
+                lng = -106.989;
+                break;
+            case 3:
+                Log.d(TAG, "Using Pikes Peak");
+                lat = 38.8406;
+                lng = -105.044;
+                break;
+            case 4:
+                Log.d(TAG, "Using Crested Butte");
+                lat = 38.8833;
+                lng = -106.943;
+                break;
+            case 5:
+                Log.d(TAG, "Using Pyramid Peak");
+                lat = 39.0714;
+                lng = -106.95;
+                break;
+            default:
+                Log.d(TAG, "Using current location");
+                lat = mLocation.getLatitude();
+                lng = mLocation.getLongitude();
+        }
 
         JSONObject jsonObject = MainActivity.PEAK_DATA;
         JSONArray jsonArray;

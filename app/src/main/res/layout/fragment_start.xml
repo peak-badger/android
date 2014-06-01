@@ -7,10 +7,12 @@
     
     <ImageButton
         android:id="@+id/Button_CheckIn"
+        android:background="@null"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
         android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="25dp"
         android:src="@drawable/btn_check_in"/>
 
 </RelativeLayout>

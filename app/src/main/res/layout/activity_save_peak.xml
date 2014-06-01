@@ -104,9 +104,12 @@
 
     <ImageButton
         android:id="@+id/Button_save"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/LinearLayout_text"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:background="@null"
         android:src="@drawable/btn_save"/>
 
 </RelativeLayout>
