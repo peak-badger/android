@@ -35,7 +35,7 @@ public class SectionsPagerAdapter extends FragmentStatePagerAdapter {
                 return new MyStatsFragment();
 			case 2:
                 //Log.d("TAG", "Pos 2");
-				return new LeaderBoardFragment();
+				return new CommunityFragment();
 			default:
 				return null;
 		}

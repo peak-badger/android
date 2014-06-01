@@ -30,6 +30,9 @@
     <string name="goals_reached">%s Goals Reached</string>
     <string name="title_activity_my_peaks">My Peaks</string>
     <string name="title_activity_splash">SplashActivity</string>
-    <string name="hello_world">Hello world!</string>
+    <string name="leaderboards">Leaderboards</string>
+    <string name="challenges">Challenges</string>
+    <string name="title_activity_my_badges">My Badges</string>
+    <string name="title_activity_leader_board">Leaderboard</string>
 
 </resources>

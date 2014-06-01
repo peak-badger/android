@@ -53,7 +53,7 @@ public class MyStatsFragment extends Fragment {
         mBadges.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getActivity(), MyPeaksActivity.class);
+                Intent i = new Intent(getActivity(), MyBadgesActivity.class);
                 startActivity(i);
             }
         });
